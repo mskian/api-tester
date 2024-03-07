@@ -130,7 +130,8 @@ function validateQueryParams(queryParams) {
 }
 
 function validateHeaders(headers) {
-    const headerPattern = /^[^:\s]+:\s*([^:\s]+|Bearer\s[^:\s]+)$/;
+    //const headerPattern = /^[^:\s]+:\s*([^:\s]+|Bearer\s[^:\s]+)$/;
+    const headerPattern = /^[^:\s]+:\s*(Basic\s[^:\s]+|[^:\s]+|Bearer\s[^:\s]+)$/;
     const headerPairs = headers.split('\n');
     for (const pair of headerPairs) {
         const trimmedPair = pair.trim();
