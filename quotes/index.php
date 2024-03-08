@@ -4,7 +4,6 @@ header('X-Frame-Options: DENY');
 header('X-XSS-Protection: 1; mode=block');
 header('X-Content-Type-Options: nosniff');
 header('Strict-Transport-Security: max-age=63072000');
-header('X-Robots-Tag: noindex, nofollow', true);
 
 ?>
 
@@ -18,7 +17,7 @@ header('X-Robots-Tag: noindex, nofollow', true);
 <meta name="theme-color" content="#c7ecee">
 
 <title>Random Quote Generator</title>
-<meta name="description" content="Free Random Random Quote Generator with image."/>
+<meta name="description" content="San Quotes - Free Random Quote Generator with image."/>
 <?php $current_page = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; echo '<link rel="canonical" href="'.$current_page.'" />'; ?>
 
 
@@ -26,15 +25,58 @@ header('X-Robots-Tag: noindex, nofollow', true);
 <link rel="icon" type="image/png" sizes="196x196" href="/icons/favicon-196.png" />
 <link rel="apple-touch-icon" href="/icons/apple-icon-180.png" />
 <meta name="mobile-web-app-capable" content="yes" />
-<meta name="application-name" content="API Tester" />
+<meta name="application-name" content="Random Quotes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-title" content="API Tester" />
+<meta name="apple-mobile-web-app-title" content="Random Quotes" />
+
+<meta property="og:site_name" content="Random Quote Generator">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Random Quote Generator">
+<meta property="og:description" content="San Quotes - Free Random Quote Generator with image.">
+<meta property="og:url" content="<?php $current_page = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; echo $current_page; ?>">
+<meta property="og:image" content="https://quotes.santhoshveer.com/random-quotes.jpg">
+<meta property="og:image:alt" content="Random Quote Generator" />
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:title" content="Random Quote Generator">
+<meta name="twitter:description" content="San Quotes - Free Random Quote Generator with image.">
+<meta name="twitter:url" content="<?php $current_page = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; echo $current_page; ?>">
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://quotes.santhoshveer.com/random-quotes.jpg">
 
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" integrity="sha512-IgmDkwzs96t4SrChW29No3NXBIBv8baW490zk5aXvhCD8vuZM3yUSkbyTBcXohkySecyzIrUwiF/qV0cuPcL3Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Random Quote Generator",
+        "url": "<?php $current_page = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; echo $current_page; ?>",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://quotes.santhoshveer.com/icons/Icon-72.png",
+            "width": 72,
+            "height": 72
+        }
+    },
+    "url": "<?php $current_page = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; echo $current_page; ?>",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://quotes.santhoshveer.com/random-quotes.jpg",
+        "width": 1200,
+        "height": 630
+    },
+    "mainEntityOfPage": "<?php $current_page = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; echo $current_page; ?>",
+    "description": "San Quotes - Free Random Quote Generator with image."
+}
+</script>
 
 <style>
      html, body {
@@ -142,7 +184,7 @@ header('X-Robots-Tag: noindex, nofollow', true);
                     <div class="field is-grouped">
                     <div class="control">
                     <button id="download-button" style="display: none;" onclick="downloadImage()" class="button is-danger is-rounded">📥</button>
-                    <button id="share-button" style="display: none;" onclick="shareImage()" class="button is-link is-rounded">📢</button>
+                    <button id="share-button" style="display: none;" onclick="shareImage()" class="button is-info is-rounded">📢</button>
                     </div>
                     </div>
                 </div>
@@ -232,7 +274,7 @@ header('X-Robots-Tag: noindex, nofollow', true);
         const imageContainer = document.getElementById("image-container");
         const copyButton = document.getElementById("copy-button");
 
-        fetch('/quotes/api.php')
+        fetch('/api/')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Failed to fetch quotes');
